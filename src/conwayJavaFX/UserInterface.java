@@ -2,16 +2,23 @@ package conwayJavaFX;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.Random;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import javafx.scene.shape.Rectangle;
 
@@ -30,6 +37,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class UserInterface {
 	
+	private static final Object[][] grid = null;
 	/**********************************************************************************************
 
 	Class Attributes
@@ -73,7 +81,31 @@ public class UserInterface {
 
 	// This attribute retains a copy of a reference to the application's Pane 
 	private Pane window;
-
+	private Stage stage;
+	 public void initialize(URL location, ResourceBundle resources) {
+		 
+	 }
+	 public void init(Stage stage) {
+		 this.stage = stage;
+	}
+	 public void openFile() {
+		 FileChooser fileChooser = new FileChooser();
+	
+		 fileChooser.getExtensionFilters().addAll(
+				 new FileChooser.ExtensionFilter("conway.java")
+				 
+				 );
+		 Window Stage;
+		File file = fileChooser.showOpenDialog(stage);
+		 
+		 if(file != null){
+			 System.out.println("Choosen file: " + file);
+		 }
+	 }
+	 public void doExit() {
+		 Platform.exit();
+	 }
+	 
 	// These attributes define the Board used by the simulation and the graphical representation
 	// There are two Boards. The previous Board and the new Board.  Once the new Board has been
 	// displayed, it becomes the previous Board for the generation of the next new Board.
